@@ -5,7 +5,7 @@
 const STORE = {
   questions: [
     { 
-      questionStep: 1,
+      questionNumber: 1,
       question: 'According to geographical nomenclature, how many continents are there in the world?',
       answers: [
         '8',
@@ -16,7 +16,7 @@ const STORE = {
       correctAnswer: '7'
     },
     {
-      questionStep: 2,
+      questionNumber: 2,
       question: "Who was the actor that played King T'challa in the film Black Panther?",
       answers: [
         'Chadwick Boseman',
@@ -27,7 +27,7 @@ const STORE = {
       correctAnswer: 'Chadwick Boseman'
     },
     {
-      questionStep: 3,
+      questionNumber: 3,
       question: "True or False: The entire world's population could fit inside Los Angeles",
       answers: [
         'true',
@@ -36,7 +36,7 @@ const STORE = {
       correctAnswer: 'true'
     },
     {
-      questionStep: 4,
+      questionNumber: 4,
       question: "Which letter does not appear in any U.S. state's name?",
       answers: [
         'Q',
@@ -47,7 +47,7 @@ const STORE = {
       correctAnswer: 'Q'
     },
     {
-      questionStep: 5,
+      questionNumber: 5,
       question: "How many letters does the longest English word have?",
       answers: [
         '189,819',
@@ -70,7 +70,7 @@ function generateQuizQuestionsString(quiz) {
       <article id="home">
         <div class="group">
           <div id="quiz-container" quiz-index="${STORE.questions.indexOf(quiz)}">
-            <h2>Question: "${quiz.questionStep}" of "${STORE.totalNumberofQuestions}"</h2>
+            <h2>Question: "${quiz.questionNumber}" of "${STORE.totalNumberofQuestions}"</h2>
             <p>Score: "${STORE.score}</p>
             <p>"${quiz.question}"</p>
             <form>
@@ -107,18 +107,13 @@ function handleSubmitBtn() {
     let selectedAnswer = $('input[name="selection"]:checked').val();
     if (quizAnswer == selectedAnswer) {
       alert("correct!");
-      addScore();
+      STORE.score ++;
     } else {
       alert("wrong");
     }
+    
     renderQuizApp();
   })
-}
-//--Responsible for adding points to the score
-function addScore() {
-  console.log('`addScore` is working');
-  STORE.score ++;
-  console.log(STORE.score);
 }
 
 function handleNextBtn() {
@@ -130,7 +125,6 @@ function handleNextBtn() {
 function handleFilmQuizApp() {
   renderQuizApp();
   handleSubmitBtn();
-  addScore();
   handleNextBtn();
 }
 
