@@ -1,0 +1,57 @@
+/* Your styles should be mobile-first and responsive */
+
+/** 
+  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
+  *
+  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
+  *
+*/
+/*--Mobile First--*/
+.section {
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+}
+
+.group {
+  border: solid 1px;
+  height: 448px;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+}
+
+/*--Form styles--*/
+@media all and (min-width: 440px) {
+  .item {
+  background-color: lightgray;
+  height: 375px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: solid 2px;
+  font-size: 24px;
+  word-wrap: break-word;
+  flex: 1;
+  margin: 10px;
+  }
+
+  .item form label {
+    font-size: 24px;
+  }
+
+  .submit-button {
+    margin-top: 25px;
+    border-radius: 10%;
+  }
+}
+
+
