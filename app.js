@@ -102,7 +102,7 @@ function handleSubmitBtn() {
   console.log('`handleSubmitBtn` is working');
   $('.js-submit-button').on('click', function (e) {
     event.preventDefault();
-    let quizIndex = $('#quiz-container').attr('quiz-index');
+    let quizIndex = STORE.questionNumber;
     let quizAnswer = STORE.questions[quizIndex].correctAnswer;
     let selectedAnswer = $('input[name="selection"]:checked').val();
     if (quizAnswer == selectedAnswer) {
