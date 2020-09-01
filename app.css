@@ -14,18 +14,15 @@
 .group {
   display: flex;
   flex-direction: column;
-}
-
-header {
-  text-align: center;
-}
-
-.group {
   border: solid 1px;
   height: 448px;
   background-color: grey;
   display: flex;
   align-items: center;
+}
+
+header {
+  text-align: center;
 }
 
 /*--Form styles--*/
@@ -44,11 +41,15 @@ header {
   margin: 10px;
   }
 
+  .group {
+    flex-direction: row;
+  }
+
   .item form label {
     font-size: 24px;
   }
 
-  .submit-button {
+  #submit-answer-button {
     margin-top: 25px;
     border-radius: 10%;
   }

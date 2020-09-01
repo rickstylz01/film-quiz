@@ -28,12 +28,14 @@ const STORE = {
     },
     {
       questionNumber: 3,
-      question: "True or False: The entire world's population could fit inside Los Angeles",
+      question: "In what city can the entire world's population fit inside",
       answers: [
-        'true',
-        'false',
+        'New York',
+        'Los Angeles',
+        'Chicago',
+        'Dallas'
       ],
-      correctAnswer: 'true'
+      correctAnswer: 'Los Angeles'
     },
     {
       questionNumber: 4,
@@ -74,7 +76,7 @@ function generateQuizQuestionsString(questionObject) {
             <h2>Question: "${questionObject.questionNumber}" of "${STORE.totalNumberofQuestions}"</h2>
             <p>Score: "${STORE.score}</p>
             <p>"${questionObject.question}"</p>
-            <fieldset>
+            <fieldset id="radio-form">
               <legend class="js-answer-choice">Please Choose One</legend>
               <label class="radio">
                 <input id="answerOne" name="selection" value="${questionObject.answers[0]}" type="radio"> "${questionObject.answers[0]}"
@@ -96,17 +98,16 @@ function generateQuizQuestionsString(questionObject) {
               </label>
             </fieldset>
             <input id="submit-answer-button" "type="submit" value="Submit">
-            <br>
           </div>
         </div>
       </article>
     </div>`
 }
 
-
 //--Responsible for rendering the quiz to the DOM
 function renderQuizApp() {
   console.log('`renderQuizApp` is working')
+  $('h1').text('World Facts Quiz');
   let questionObject = STORE.questions[STORE.questionNumber];
   let questionHtml = generateQuizQuestionsString(questionObject);
   $('main').append(questionHtml);
@@ -130,7 +131,11 @@ function handleSubmitBtn() {
     console.log(quizIndex);
   })
 }
-
+//generate congratulations string
+//output: html that congratulates the user
+function generateCongratsString() {
+  return `<h2>Congratulations</h2>`
+}
 //--Responsible for replacing with next question
 function replaceQuestion() {
   //checking if the current question is the last question
@@ -152,17 +157,12 @@ function isCurrentQuestionTheLast() {
   let currentQuestionNumber = STORE.questionNumber;
   return totalNumberofQuestions == currentQuestionNumber;
 }
-//generate congratulations string
-//output: html that congratulates the user
-function generateCongratsString() {
-  return `<h2>Congratulations</h2>`
-}
+
 
 //--Render Function
 function handleFilmQuizApp() {
   renderQuizApp();
   handleSubmitBtn();
-  // replaceQuestion();
 }
 
 $(handleFilmQuizApp);
