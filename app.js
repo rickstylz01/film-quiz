@@ -74,18 +74,26 @@ function generateQuizQuestionsString(questionObject) {
             <h2>Question: "${questionObject.questionNumber}" of "${STORE.totalNumberofQuestions}"</h2>
             <p>Score: "${STORE.score}</p>
             <p>"${questionObject.question}"</p>
-            <form>
-              <input type="radio" class="js-answer-choice" id="answerOne" name="selection" value="${questionObject.answers[0]}">
-              <label for="answerOne">"${questionObject.answers[0]}"</label>
-              <br>
-              <input type="radio" class="js-answer-choice" id="answerTwo" name="selection" value="${questionObject.answers[1]}">
-              <label for="answerTwo">"${questionObject.answers[1]}"</label><br>
-              <input type="radio" class="js-answer-choice" id="answerThree" name="selection" value="${questionObject.answers[2]}">
-              <label for="answerThree">"${questionObject.answers[2]}"</label><br>
-              <input type="radio" class="js-answer-choice" id="answerFour" name="selection" value="${questionObject.answers[3]}">
-              <label for="answerFour">"${questionObject.answers[3]}"</label><br>
-            </form>
-            <input id="submit-answer-button" class="submit-button js-submit-button" type="submit" value="Submit">
+
+            <fieldset>
+              <legend class="js-answer-choice">Please Choose One</legend>
+              <label class="radio">
+                <input id="answerOne" name="selection" value="${questionObject.answers[0]}" type="radio"> "${questionObject.answers[0]}"
+              </label>
+              <legend class="js-answer-choice"></legend>
+              <label class="radio">
+                <input id="answerOne" name="selection" value="${questionObject.answers[1]}" type="radio"> "${questionObject.answers[1]}"
+              </label>
+              <legend class="js-answer-choice"></legend>
+              <label class="radio">
+                <input id="answerOne" name="selection" value="${questionObject.answers[2]}" type="radio"> "${questionObject.answers[2]}"
+              </label>
+              <legend class="js-answer-choice"></legend>
+              <label class="radio">
+                <input id="answerOne" name="selection" value="${questionObject.answers[3]}" type="radio"> "${questionObject.answers[3]}"
+              </label>
+            </fieldset>
+            <br>
           </div>
         </div>
       </article>
