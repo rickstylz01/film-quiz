@@ -39,9 +39,9 @@ const STORE = {
       questionNumber: 4,
       question: "Which letter does not appear in any U.S. state's name?",
       answers: [
-        'Q',
-        'Z',
         'X',
+        'Z',
+        'Q',
         'W'
       ],
       correctAnswer: 'Q'
@@ -49,9 +49,9 @@ const STORE = {
     {
       questionNumber: 5,
       question: "How many letters does the longest English word have?",
-      answers: [
-        '189,819',
+      answers: [ 
         '6,471,389',
+        '189,819',
         '100',
         '820'
       ],
@@ -74,25 +74,28 @@ function generateQuizQuestionsString(questionObject) {
             <h2>Question: "${questionObject.questionNumber}" of "${STORE.totalNumberofQuestions}"</h2>
             <p>Score: "${STORE.score}</p>
             <p>"${questionObject.question}"</p>
-
             <fieldset>
               <legend class="js-answer-choice">Please Choose One</legend>
               <label class="radio">
                 <input id="answerOne" name="selection" value="${questionObject.answers[0]}" type="radio"> "${questionObject.answers[0]}"
               </label>
+              <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
                 <input id="answerOne" name="selection" value="${questionObject.answers[1]}" type="radio"> "${questionObject.answers[1]}"
               </label>
+              <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
                 <input id="answerOne" name="selection" value="${questionObject.answers[2]}" type="radio"> "${questionObject.answers[2]}"
               </label>
+              <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
                 <input id="answerOne" name="selection" value="${questionObject.answers[3]}" type="radio"> "${questionObject.answers[3]}"
               </label>
             </fieldset>
+            <input id="submit-answer-button" "type="submit" value="Submit">
             <br>
           </div>
         </div>
@@ -106,12 +109,12 @@ function renderQuizApp() {
   console.log('`renderQuizApp` is working')
   let questionObject = STORE.questions[STORE.questionNumber];
   let questionHtml = generateQuizQuestionsString(questionObject);
-  $('body').append(questionHtml);
+  $('main').append(questionHtml);
 }
 //--Responsible for handling submit button click event
 function handleSubmitBtn() {
   console.log('`handleSubmitBtn` is working');
-  $('body').on('click', '#submit-answer-button', function (e) {
+  $('main').on('click', '#submit-answer-button', function (e) {
     event.preventDefault();
     let quizIndex = STORE.questionNumber;
     let quizAnswer = STORE.questions[quizIndex].correctAnswer;
