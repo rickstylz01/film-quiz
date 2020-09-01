@@ -74,7 +74,7 @@ function generateQuizQuestionsString(questionObject) {
       <article id="home">
         <div class="group">
           <div id="quiz-container" quiz-index="${STORE.questionNumber}">
-            <h2 class="question-number">Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</h2>
+            <p class="question-number">Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</p>
             <p id="score-board">Score: ${STORE.score}</p>
             <p>${questionObject.question}</p>
             <fieldset id="radio-form">
@@ -104,6 +104,40 @@ function generateQuizQuestionsString(questionObject) {
       </article>
     </div>`
 }
+//generate congratulations string
+//output: html that congratulates the user
+function generateCongratsString() {
+  return `
+  <main>
+    <div class="section">
+      <article id="home">
+        <div class="group">
+          <div class="item congrats-item">
+            <p>You passed with a score of: ${STORE.score}</p>
+            <p>That means you got a grade of: ${determineGrade(STORE.score)}</p>
+            <p>CONGRATULATIONS!</P>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>`
+}
+
+function determineGrade(score) {
+  // Set the student's grade
+  switch (score) {
+    case score = 5:
+      return("A");
+    case score = 4:
+      return("B");
+    case score = 3:
+      return("C");
+    case score = 2:
+      return("D");
+    default:
+      return("F");
+  }
+}
 
 //--Responsible for rendering the quiz to the DOM
 function renderQuizApp() {
@@ -129,15 +163,12 @@ function handleSubmitBtn() {
       replaceQuestion();
     } else {
       alert("wrong");
+      STORE.questionNumber ++;
+      replaceQuestion();
     }
-    console.log(quizIndex);
   })
 }
-//generate congratulations string
-//output: html that congratulates the user
-function generateCongratsString() {
-  return `<h2>Congratulations</h2>`
-}
+
 //--Responsible for replacing with next question
 function replaceQuestion() {
   //checking if the current question is the last question

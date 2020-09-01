@@ -26,7 +26,7 @@ main {
 .group {
   display: flex;
   flex-direction: column;
-  height: 448px;
+  height: 500px;
   display: flex;
   align-items: center;
 }
@@ -35,12 +35,13 @@ header {
   text-align: center;
 }
 
-/*--Form styles--*/
+/*--Desktop--*/
 @media all and (min-width: 440px) {
   #quiz-container {
     color: limegreen;
-    height: 375px;
+    height: 500px;
     width: 500px;
+    padding-top: 25px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -48,6 +49,10 @@ header {
     word-wrap: break-word;
     flex: 1;
     margin: 10px;
+  }
+
+  .question-number {
+    font-size: 34px;
   }
 
   h1 {
@@ -60,11 +65,13 @@ header {
   }
 
   #submit-answer-button {
+
     margin-top: 25px;
     border-radius: 10%;
   }
 
   /*--Radio Form--*/
+
   #radio-form {
     border-style: hidden;
   }
@@ -72,6 +79,25 @@ header {
   #radio-form label,
   #score-board{
     color: orange;
+  }
+
+  #score-board {
+    font-size: 24px;
+  }
+
+  /*--Congrats Section--*/
+
+  .congrats-item {
+    color: limegreen;
+    height: 375px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 50px;
+    word-wrap: break-word;
+    flex: 1;
+    margin: 10px;
   }
 }
 
