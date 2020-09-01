@@ -74,31 +74,31 @@ function generateQuizQuestionsString(questionObject) {
       <article id="home">
         <div class="group">
           <div id="quiz-container" quiz-index="${STORE.questionNumber}">
-            <h2>Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</h2>
-            <p>Score: ${STORE.score}</p>
+            <h2 class="question-number">Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</h2>
+            <p id="score-board">Score: ${STORE.score}</p>
             <p>${questionObject.question}</p>
             <fieldset id="radio-form">
               <legend class="js-answer-choice">Please Choose One</legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value=${questionObject.answers[0]} type="radio"> ${questionObject.answers[0]}
+                <input id="answers" name="selection" value="${questionObject.answers[0]}" type="radio"> ${questionObject.answers[0]}
               </label>
               <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value=${questionObject.answers[1]} type="radio"> ${questionObject.answers[1]}
+                <input id="answers" name="selection" value="${questionObject.answers[1]}" type="radio"> ${questionObject.answers[1]}
               </label>
               <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value=${questionObject.answers[2]} type="radio"> ${questionObject.answers[2]}
+                <input id="answers" name="selection" value="${questionObject.answers[2]}" type="radio"> ${questionObject.answers[2]}
               </label>
               <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value=${questionObject.answers[3]} type="radio"> ${questionObject.answers[3]}
+                <input id="answers" name="selection" value="${questionObject.answers[3]}" type="radio"> ${questionObject.answers[3]}
               </label>
             </fieldset>
-            <input id="submit-answer-button" "type="submit" value="Submit">
+            <input id="submit-answer-button" type="submit" value="Submit">
           </div>
         </div>
       </article>
@@ -122,7 +122,7 @@ function handleSubmitBtn() {
     let quizIndex = STORE.questionNumber;
     let quizAnswer = STORE.questions[quizIndex].correctAnswer;
     let selectedAnswer = $('input[name="selection"]:checked').val();
-    if (quizAnswer == selectedAnswer) {
+    if (selectedAnswer == quizAnswer) {
       alert("correct!");
       STORE.score ++;
       STORE.questionNumber ++; 

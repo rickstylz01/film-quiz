@@ -13,8 +13,10 @@ body {
   background-attachment: fixed;
 }
 
-#radio-form {
-  border: solid 4px green;
+main {
+  background-color: RGBA(0,0,0,0.5);
+  border-style: dotted;
+  border-color: limegreen;
 }
 
 .section {
@@ -24,7 +26,6 @@ body {
 .group {
   display: flex;
   flex-direction: column;
-  border: solid 1px;
   height: 448px;
   display: flex;
   align-items: center;
@@ -36,31 +37,41 @@ header {
 
 /*--Form styles--*/
 @media all and (min-width: 440px) {
-  .item {
-  background-color: lightgray;
-  height: 375px;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  border: solid 2px;
-  font-size: 24px;
-  word-wrap: break-word;
-  flex: 1;
-  margin: 10px;
+  #quiz-container {
+    color: limegreen;
+    height: 375px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 24px;
+    word-wrap: break-word;
+    flex: 1;
+    margin: 10px;
+  }
+
+  h1 {
+    color: limegreen;
+    font-size: 70px;
   }
 
   .group {
     flex-direction: row;
   }
 
-  .item form label {
-    font-size: 24px;
-  }
-
   #submit-answer-button {
     margin-top: 25px;
     border-radius: 10%;
+  }
+
+  /*--Radio Form--*/
+  #radio-form {
+    border-style: hidden;
+  }
+
+  #radio-form label,
+  #score-board{
+    color: orange;
   }
 }
 
