@@ -7,6 +7,16 @@
   *
 */
 /*--Mobile First--*/
+body {
+  background-image: url('images/space-view-short-copy.jpg');
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#radio-form {
+  border: solid 4px green;
+}
+
 .section {
   width: 100%;
 }
@@ -16,7 +26,6 @@
   flex-direction: column;
   border: solid 1px;
   height: 448px;
-  background-color: grey;
   display: flex;
   align-items: center;
 }

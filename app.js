@@ -65,6 +65,7 @@ const STORE = {
   questionNumber: 0,
   score: 0
 };
+
 // input: question object to get question data from
 // output: html element
 function generateQuizQuestionsString(questionObject) {
@@ -73,28 +74,28 @@ function generateQuizQuestionsString(questionObject) {
       <article id="home">
         <div class="group">
           <div id="quiz-container" quiz-index="${STORE.questionNumber}">
-            <h2>Question: "${questionObject.questionNumber}" of "${STORE.totalNumberofQuestions}"</h2>
-            <p>Score: "${STORE.score}</p>
-            <p>"${questionObject.question}"</p>
+            <h2>Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</h2>
+            <p>Score: ${STORE.score}</p>
+            <p>${questionObject.question}</p>
             <fieldset id="radio-form">
               <legend class="js-answer-choice">Please Choose One</legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value="${questionObject.answers[0]}" type="radio"> "${questionObject.answers[0]}"
+                <input id="answerOne" name="selection" value=${questionObject.answers[0]} type="radio"> ${questionObject.answers[0]}
               </label>
               <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value="${questionObject.answers[1]}" type="radio"> "${questionObject.answers[1]}"
+                <input id="answerOne" name="selection" value=${questionObject.answers[1]} type="radio"> ${questionObject.answers[1]}
               </label>
               <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value="${questionObject.answers[2]}" type="radio"> "${questionObject.answers[2]}"
+                <input id="answerOne" name="selection" value=${questionObject.answers[2]} type="radio"> ${questionObject.answers[2]}
               </label>
               <br>
               <legend class="js-answer-choice"></legend>
               <label class="radio">
-                <input id="answerOne" name="selection" value="${questionObject.answers[3]}" type="radio"> "${questionObject.answers[3]}"
+                <input id="answerOne" name="selection" value=${questionObject.answers[3]} type="radio"> ${questionObject.answers[3]}
               </label>
             </fieldset>
             <input id="submit-answer-button" "type="submit" value="Submit">
@@ -109,7 +110,8 @@ function renderQuizApp() {
   console.log('`renderQuizApp` is working')
   $('h1').text('World Facts Quiz');
   let questionObject = STORE.questions[STORE.questionNumber];
-  let questionHtml = generateQuizQuestionsString(questionObject);
+  let questionHtml = generateQuizQuestionsString
+  (questionObject);
   $('main').append(questionHtml);
 }
 //--Responsible for handling submit button click event
@@ -197,5 +199,3 @@ $(handleFilmQuizApp);
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-
-
