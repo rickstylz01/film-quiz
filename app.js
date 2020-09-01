@@ -63,28 +63,29 @@ const STORE = {
   questionNumber: 0,
   score: 0
 };
-
-function generateQuizQuestionsString(quiz) {
+// input: question object to get question data from
+// output: html element
+function generateQuizQuestionsString(questionObject) {
   return `
-  <div class="section">
+  <div id="js-quiz-element" class="section">
       <article id="home">
         <div class="group">
-          <div id="quiz-container" quiz-index="${STORE.questions.indexOf(quiz)}">
-            <h2>Question: "${quiz.questionNumber}" of "${STORE.totalNumberofQuestions}"</h2>
+          <div id="quiz-container" quiz-index="${STORE.questionNumber}">
+            <h2>Question: "${questionObject.questionNumber}" of "${STORE.totalNumberofQuestions}"</h2>
             <p>Score: "${STORE.score}</p>
-            <p>"${quiz.question}"</p>
+            <p>"${questionObject.question}"</p>
             <form>
-              <input type="radio" class="js-answer-choice" id="answerOne" name="selection" value="${quiz.answers[0]}">
-              <label for="answerOne">"${quiz.answers[0]}"</label>
+              <input type="radio" class="js-answer-choice" id="answerOne" name="selection" value="${questionObject.answers[0]}">
+              <label for="answerOne">"${questionObject.answers[0]}"</label>
               <br>
-              <input type="radio" class="js-answer-choice" id="answerTwo" name="selection" value="${quiz.answers[1]}">
-              <label for="answerTwo">"${quiz.answers[1]}"</label><br>
-              <input type="radio" class="js-answer-choice" id="answerThree" name="selection" value="${quiz.answers[2]}">
-              <label for="answerThree">"${quiz.answers[2]}"</label><br>
-              <input type="radio" class="js-answer-choice" id="answerFour" name="selection" value="${quiz.answers[3]}">
-              <label for="answerFour">"${quiz.answers[3]}"</label><br>
+              <input type="radio" class="js-answer-choice" id="answerTwo" name="selection" value="${questionObject.answers[1]}">
+              <label for="answerTwo">"${questionObject.answers[1]}"</label><br>
+              <input type="radio" class="js-answer-choice" id="answerThree" name="selection" value="${questionObject.answers[2]}">
+              <label for="answerThree">"${questionObject.answers[2]}"</label><br>
+              <input type="radio" class="js-answer-choice" id="answerFour" name="selection" value="${questionObject.answers[3]}">
+              <label for="answerFour">"${questionObject.answers[3]}"</label><br>
             </form>
-            <input class="submit-button js-submit-button" type="submit" value="Submit">
+            <input id="submit-answer-button" class="submit-button js-submit-button" type="submit" value="Submit">
           </div>
         </div>
       </article>
@@ -95,12 +96,14 @@ function generateQuizQuestionsString(quiz) {
 //--Responsible for rendering the quiz to the DOM
 function renderQuizApp() {
   console.log('`renderQuizApp` is working')
-  $('body').append(generateQuizQuestionsString(STORE.questions[0]));
+  let questionObject = STORE.questions[STORE.questionNumber];
+  let questionHtml = generateQuizQuestionsString(questionObject);
+  $('body').append(questionHtml);
 }
 //--Responsible for handling submit button click event
 function handleSubmitBtn() {
   console.log('`handleSubmitBtn` is working');
-  $('.js-submit-button').on('click', function (e) {
+  $('body').on('click', '#submit-answer-button', function (e) {
     event.preventDefault();
     let quizIndex = STORE.questionNumber;
     let quizAnswer = STORE.questions[quizIndex].correctAnswer;
@@ -108,24 +111,47 @@ function handleSubmitBtn() {
     if (quizAnswer == selectedAnswer) {
       alert("correct!");
       STORE.score ++;
+      STORE.questionNumber ++; 
+      replaceQuestion();
     } else {
       alert("wrong");
     }
-    
-    renderQuizApp();
+    console.log(quizIndex);
   })
 }
 
-function handleNextBtn() {
-  console.log('`handleNextBtn` is working');
-  //this function will handle the "next button" event click
+//--Responsible for replacing with next question
+function replaceQuestion() {
+  //checking if the current question is the last question
+  if (isCurrentQuestionTheLast()) {
+    //if it is the last question then alert 
+    let congratulationsHtml = generateCongratsString();
+    $('#js-quiz-element').replaceWith(congratulationsHtml);
+    //if it's not the last question then replace the question
+  } else {
+    let questionObject = STORE.questions[STORE.questionNumber];
+    let newQuizQuestion = generateQuizQuestionsString(questionObject);
+    $('#js-quiz-element').replaceWith(newQuizQuestion);
+  }
+  
+}
+//output: boolean true or false whether return question is the last;
+function isCurrentQuestionTheLast() {
+  let totalNumberofQuestions = STORE.totalNumberofQuestions;
+  let currentQuestionNumber = STORE.questionNumber;
+  return totalNumberofQuestions == currentQuestionNumber;
+}
+//generate congratulations string
+//output: html that congratulates the user
+function generateCongratsString() {
+  return `<h2>Congratulations</h2>`
 }
 
 //--Render Function
 function handleFilmQuizApp() {
   renderQuizApp();
   handleSubmitBtn();
-  handleNextBtn();
+  // replaceQuestion();
 }
 
 $(handleFilmQuizApp);
