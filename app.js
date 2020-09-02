@@ -110,15 +110,17 @@ function generateQuizQuestionsString(questionObject) {
 //output: html that congratulates the user
 function generateCongratsString() {
   return `
-    <div class="section">
+    <div id="congrats-element" class="section">
       <article id="home">
         <div class="group">
           <div class="item congrats-item">
             <p>You finished with a score of: ${STORE.score}</p>
             <p>You get a: ${determineGradeAndMessage(STORE.score)}</p>
             <p>${STORE.congratulationsMessage}</p>
+            <input id="play-again-button" type="submit" value="Play Again"></input>
           </div>
         </div>
+        
       </article>
     </div>`
 }
@@ -127,7 +129,7 @@ function determineGradeAndMessage(score) {
   // Set the student's grade
   switch (score) {
     case score = 5:
-      STORE.congratulationsMessage = "Awesome";
+      STORE.congratulationsMessage = "Awesome!";
       return("A");
     case score = 4:
       STORE.congratulationsMessage = "Berry Good";
@@ -144,21 +146,7 @@ function determineGradeAndMessage(score) {
   }
 }
 
-//--Responsible for rendering the quiz to the DOM
-function renderQuizApp() {
-  console.log('`renderQuizApp` is working')
-  $('h1').text('World Facts Quiz');
-  let questionObject = STORE.questions[STORE.questionNumber];
-  let questionHtml = generateQuizQuestionsString
-  (questionObject);
-  $('main').append(questionHtml);
-  $('main').prepend(`<div class="alert-container">
-    <strong id="correct-flash" class="hidden alert">Correct!</strong>
-    <strong id="incorrect-flash" class="hidden alert">Incorrect!</strong>
-  </div>`)
-}
-
-//--Alert Messages
+//--displays correct message
 function displayCorrectAlertMessage() {
   $('#correct-flash').toggle();
   setTimeout(
@@ -166,7 +154,7 @@ function displayCorrectAlertMessage() {
       $('#correct-flash').fadeOut('slow');
     }, 2000);
 }
-
+//displays incorrect message
 function displayIncorrectAlertMessage() {
   $('#incorrect-flash').toggle();
   setTimeout(
@@ -174,15 +162,26 @@ function displayIncorrectAlertMessage() {
       $('#incorrect-flash').fadeOut('slow');
     }, 2000);
 }
+//displays answer required message
+function displayAnswerRequiredAlertMessage() {
+  $('#answer-required-flash').toggle();
+  setTimeout(
+    function () {
+      $('#answer-required-flash').fadeOut('slow');
+    }, 2000);
+}
+
 //--Responsible for handling submit button click event
 function handleSubmitBtn() {
   console.log('`handleSubmitBtn` is working');
   $('main').on('click', '#submit-answer-button', function (e) {
-    event.preventDefault();
+    e.preventDefault();
     let quizIndex = STORE.questionNumber;
     let quizAnswer = STORE.questions[quizIndex].correctAnswer;
     let selectedAnswer = $('input[name="selection"]:checked').val();
-    if (selectedAnswer == quizAnswer) {
+    if (!selectedAnswer) {
+      displayAnswerRequiredAlertMessage();
+    } else if (selectedAnswer == quizAnswer) {
       displayCorrectAlertMessage();
       STORE.score ++;
       STORE.questionNumber ++; 
@@ -193,6 +192,29 @@ function handleSubmitBtn() {
       replaceQuestion();
     }
   })
+}
+
+//handle the play again button
+function resetQuiz() {
+  $('main').on('click', '#play-again-button', function (e) {
+    console.log('reset button is working');
+    e.preventDefault(); 
+    STORE.questionNumber = 0;
+    STORE.score = 0;
+    //retrieving first question object
+    let firstQuestionObject = STORE.questions[0];
+    //creating a quiz question html string
+    let quizQuestionElement = generateQuizQuestionsString(firstQuestionObject);
+    //replacing congrats message with quiz question html string
+    $('#congrats-element').replaceWith(quizQuestionElement);
+  })
+}
+
+//output: boolean true or false whether return question is the last;
+function isCurrentQuestionTheLast() {
+  let totalNumberofQuestions = STORE.totalNumberofQuestions;
+  let currentQuestionNumber = STORE.questionNumber;
+  return totalNumberofQuestions == currentQuestionNumber;
 }
 
 //--Responsible for replacing with next question
@@ -208,20 +230,28 @@ function replaceQuestion() {
     let newQuizQuestion = generateQuizQuestionsString(questionObject);
     $('#js-quiz-element').replaceWith(newQuizQuestion);
   }
-  
-}
-//output: boolean true or false whether return question is the last;
-function isCurrentQuestionTheLast() {
-  let totalNumberofQuestions = STORE.totalNumberofQuestions;
-  let currentQuestionNumber = STORE.questionNumber;
-  return totalNumberofQuestions == currentQuestionNumber;
 }
 
+//--Responsible for rendering the quiz to the DOM
+function renderQuizApp() {
+  console.log('`renderQuizApp` is working')
+  $('h1').text('World Facts Quiz');
+  let questionObject = STORE.questions[STORE.questionNumber];
+  let questionHtml = generateQuizQuestionsString
+    (questionObject);
+  $('main').append(questionHtml);
+  $('main').prepend(`<div class="alert-container">
+    <strong id="correct-flash" class="hidden alert">Correct!</strong>
+    <strong id="incorrect-flash" class="hidden alert">Incorrect!</strong>
+    <strong id="answer-required-flash" class="hidden alert">Please choose an answer</strong>
+  </div>`)
+}
 
 //--Render Function
 function handleFilmQuizApp() {
   renderQuizApp();
   handleSubmitBtn();
+  resetQuiz();
 }
 
 $(handleFilmQuizApp);
