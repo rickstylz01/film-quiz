@@ -10,7 +10,6 @@
 body {
   background-image: url('images/space-view-short-copy.jpg');
   background-position: center;
-  background-attachment: fixed;
 }
 
 main {
@@ -41,7 +40,7 @@ header {
     color: limegreen;
     height: 500px;
     width: 500px;
-    padding-top: 25px;
+    padding: auto;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -65,17 +64,21 @@ header {
   }
 
   #submit-answer-button {
-
     margin-top: 25px;
     border-radius: 10%;
   }
 
   /*--Alert Message--*/
   .alert {
-    height: 100px;
-    padding: 20px;
-    background-color: #f44336;
+    padding: 18px;
+    font-size: 24px;
     color: white;
+    text-align: center;
+  }
+
+  .alert-container {
+    height: 50px;
+    margin-top: 40px;
     text-align: center;
   }
 

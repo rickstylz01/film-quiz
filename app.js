@@ -110,7 +110,6 @@ function generateQuizQuestionsString(questionObject) {
 //output: html that congratulates the user
 function generateCongratsString() {
   return `
-  <main>
     <div class="section">
       <article id="home">
         <div class="group">
@@ -121,8 +120,7 @@ function generateCongratsString() {
           </div>
         </div>
       </article>
-    </div>
-  </main>`
+    </div>`
 }
 
 function determineGradeAndMessage(score) {
@@ -154,9 +152,9 @@ function renderQuizApp() {
   let questionHtml = generateQuizQuestionsString
   (questionObject);
   $('main').append(questionHtml);
-  $('main').prepend(`<div class="alert">
+  $('main').prepend(`<div class="alert-container">
     <strong id="correct-flash" class="hidden alert">Correct!</strong>
-    <strong id="incorrect-flash" class="hidden alert">Incorrec!</strong>
+    <strong id="incorrect-flash" class="hidden alert">Incorrect!</strong>
   </div>`)
 }
 
