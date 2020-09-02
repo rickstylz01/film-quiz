@@ -70,6 +70,19 @@ header {
     border-radius: 10%;
   }
 
+  /*--Alert Message--*/
+  .alert {
+    height: 100px;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+
   /*--Radio Form--*/
 
   #radio-form {

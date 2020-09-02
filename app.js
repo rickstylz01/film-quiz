@@ -63,7 +63,8 @@ const STORE = {
   totalNumberofQuestions: 5,
   quizStarted: false,
   questionNumber: 0,
-  score: 0
+  score: 0,
+  congratulationsMessage: ""
 };
 
 // input: question object to get question data from
@@ -98,12 +99,13 @@ function generateQuizQuestionsString(questionObject) {
                 <input id="answers" name="selection" value="${questionObject.answers[3]}" type="radio"> ${questionObject.answers[3]}
               </label>
             </fieldset>
-            <input id="submit-answer-button" type="submit" value="Submit">
+            <input id="submit-answer-button" type="submit" value="Submit"></input>
           </div>
         </div>
       </article>
     </div>`
 }
+
 //generate congratulations string
 //output: html that congratulates the user
 function generateCongratsString() {
@@ -113,9 +115,9 @@ function generateCongratsString() {
       <article id="home">
         <div class="group">
           <div class="item congrats-item">
-            <p>You passed with a score of: ${STORE.score}</p>
-            <p>That means you got a grade of: ${determineGrade(STORE.score)}</p>
-            <p>CONGRATULATIONS!</P>
+            <p>You finished with a score of: ${STORE.score}</p>
+            <p>You get a: ${determineGradeAndMessage(STORE.score)}</p>
+            <p>${STORE.congratulationsMessage}</p>
           </div>
         </div>
       </article>
@@ -123,18 +125,23 @@ function generateCongratsString() {
   </main>`
 }
 
-function determineGrade(score) {
+function determineGradeAndMessage(score) {
   // Set the student's grade
   switch (score) {
     case score = 5:
+      STORE.congratulationsMessage = "Awesome";
       return("A");
     case score = 4:
+      STORE.congratulationsMessage = "Berry Good";
       return("B");
     case score = 3:
+      STORE.congratulationsMessage = "Can Improve";
       return("C");
     case score = 2:
+      STORE.congratulationsMessage = "Did not study";
       return("D");
     default:
+      STORE.congratulationsMessage = "FAIL!";
       return("F");
   }
 }
@@ -147,6 +154,27 @@ function renderQuizApp() {
   let questionHtml = generateQuizQuestionsString
   (questionObject);
   $('main').append(questionHtml);
+  $('main').prepend(`<div class="alert">
+    <strong id="correct-flash" class="hidden alert">Correct!</strong>
+    <strong id="incorrect-flash" class="hidden alert">Incorrec!</strong>
+  </div>`)
+}
+
+//--Alert Messages
+function displayCorrectAlertMessage() {
+  $('#correct-flash').toggle();
+  setTimeout(
+    function () {
+      $('#correct-flash').fadeOut('slow');
+    }, 2000);
+}
+
+function displayIncorrectAlertMessage() {
+  $('#incorrect-flash').toggle();
+  setTimeout(
+    function () {
+      $('#incorrect-flash').fadeOut('slow');
+    }, 2000);
 }
 //--Responsible for handling submit button click event
 function handleSubmitBtn() {
@@ -157,12 +185,12 @@ function handleSubmitBtn() {
     let quizAnswer = STORE.questions[quizIndex].correctAnswer;
     let selectedAnswer = $('input[name="selection"]:checked').val();
     if (selectedAnswer == quizAnswer) {
-      alert("correct!");
+      displayCorrectAlertMessage();
       STORE.score ++;
       STORE.questionNumber ++; 
       replaceQuestion();
     } else {
-      alert("wrong");
+      displayIncorrectAlertMessage();
       STORE.questionNumber ++;
       replaceQuestion();
     }
