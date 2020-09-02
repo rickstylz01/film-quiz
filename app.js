@@ -75,8 +75,8 @@ function generateQuizQuestionsString(questionObject) {
       <article id="home">
         <div class="group">
           <div id="quiz-container" quiz-index="${STORE.questionNumber}">
-            <p class="question-number">Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</p>
-            <p id="score-board">Score: ${STORE.score}</p>
+            <h2 class="question-number">Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</h2>
+            <h3 id="score-board">Score: ${STORE.score}</h3>
             <p>${questionObject.question}</p>
             <fieldset id="radio-form">
               <legend class="js-answer-choice">Please Choose One</legend>

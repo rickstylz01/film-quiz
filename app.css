@@ -8,6 +8,7 @@
 */
 /*--Mobile First--*/
 body {
+  background-color: RGBA(0,0,0,0.5);
   background-image: url('images/space-view-short-copy.jpg');
   background-position: center;
 }
@@ -55,7 +56,7 @@ header {
   }
 
   h1 {
-    color: limegreen;
+    color: white;
     font-size: 70px;
   }
 
