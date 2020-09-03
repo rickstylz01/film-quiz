@@ -115,34 +115,32 @@ function generateCongratsString() {
         <div class="group">
           <div class="item congrats-item">
             <p>You finished with a score of: ${STORE.score}</p>
-            <p>You get a: ${determineGradeAndMessage(STORE.score)}</p>
+            <p>You get a: ${determineGradeAndMessage()}</p>
             <p>${STORE.congratulationsMessage}</p>
             <input id="play-again-button" type="submit" value="Play Again"></input>
           </div>
         </div>
-        
       </article>
     </div>`
 }
 
-function determineGradeAndMessage(score) {
+function determineGradeAndMessage() {
   // Set the student's grade
-  switch (score) {
-    case score = 5:
-      STORE.congratulationsMessage = "Awesome!";
-      return("A");
-    case score = 4:
-      STORE.congratulationsMessage = "Berry Good";
-      return("B");
-    case score = 3:
-      STORE.congratulationsMessage = "Can Improve";
-      return("C");
-    case score = 2:
-      STORE.congratulationsMessage = "Did not study";
-      return("D");
-    default:
-      STORE.congratulationsMessage = "FAIL!";
-      return("F");
+  if (STORE.score == 5){ 
+    STORE.congratulationsMessage = "Awesome!";
+    return("A");
+  } else if (STORE.score == 4) {
+    STORE.congratulationsMessage = "Berry Good";
+    return("B");
+  } else if (STORE.score == 3) {
+    STORE.congratulationsMessage = "Can Improve";
+    return("C");
+  } else if (STORE.score == 2) {
+    STORE.congratulationsMessage = "Did not study";
+    return("D");
+  } else {
+    STORE.congratulationsMessage = "FAIL!";
+    return("F");
   }
 }
 
