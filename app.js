@@ -126,6 +126,23 @@ function generateCongratsString() {
     </div>`
 }
 
+//genereate starting page element
+//output: html element that lets player start the game
+function generateStartingPageString() {
+  return `
+    <div id="start-element" class="section">
+      <article id="home">
+        <div class="group">
+          <div class="item start-item">
+            <p>Test your knowledge on world facts</p>
+            <p>Press start to begin</p>
+            <input id="start-button" type="submit" value="START"></input>
+          </div>
+        </div>
+      </article>
+    </div>`
+}
+
 function determineGradeAndMessage() {
   // Set the student's grade
   if (STORE.score == 5){ 
@@ -154,7 +171,7 @@ function displayCorrectAlertMessage() {
       $('#correct-flash').fadeOut('slow');
     }, 2000);
 }
-//displays incorrect message
+//--displays incorrect message
 function displayIncorrectAlertMessage() {
   $('#incorrect-flash').toggle();
   setTimeout(
@@ -162,7 +179,7 @@ function displayIncorrectAlertMessage() {
       $('#incorrect-flash').fadeOut('slow');
     }, 2000);
 }
-//displays answer required message
+//--displays answer required message
 function displayAnswerRequiredAlertMessage() {
   $('#answer-required-flash').toggle();
   setTimeout(
@@ -194,7 +211,7 @@ function handleSubmitBtn() {
   })
 }
 
-//handle the play again button
+//--Responsible for resetting quiz if play again button is clicked
 function resetQuiz() {
   $('main').on('click', '#play-again-button', function (e) {
     console.log('reset button is working');
@@ -247,14 +264,36 @@ function renderQuizApp() {
   </div>`)
 }
 
+//--Responsible for rendering start screen
+function renderStartScreen() {
+  console.log('`renderStartScreen` is working');
+  $('h1').text('Welcome to the World Facts Quiz');
+  let startScreenString = generateStartingPageString();
+  $('main').append(startScreenString);
+}
+
+//handle start button to render the quiz
+function startQuizBtn() {
+  console.log('`startQuizBtn` is working')
+  $('main').on('click', '#start-button', function (e) {
+    e.preventDefault();
+    let firstQuestionObject = STORE.questions[0];
+    //creating a quiz question html string
+    let quizQuestionElement = generateQuizQuestionsString(firstQuestionObject);
+    //replacing start message with quiz question html string
+    $('#start-element').replaceWith(renderQuizApp());
+  })
+}
+
 //--Render Function
-function handleFilmQuizApp() {
-  renderQuizApp();
+function handleWorldFactsQuizApp() {
+  renderStartScreen();
+  startQuizBtn();
   handleSubmitBtn();
   resetQuiz();
 }
 
-$(handleFilmQuizApp);
+$(handleWorldFactsQuizApp);
 
 
 

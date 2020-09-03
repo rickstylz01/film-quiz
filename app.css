@@ -41,7 +41,12 @@ h1 {
   color: white;
 }
 
+.start-item {
+  height: fit-content;
+}
+
 /*--Button Styles--*/
+#start-button,
 #submit-answer-button,
 #play-again-button {
   margin-top: 25px;
@@ -50,12 +55,14 @@ h1 {
   background-color: white;
 }
 
+#start-button:hover,
 #play-again-button:hover,
 #submit-answer-button:hover {
   background-color: #4CAF50; 
   color: white;
 }
 
+#start-button,
 #play-again-button {
   color: black;
   font-size: 20px;
@@ -90,12 +97,14 @@ header {
   display: none;
 }
 
-/*--Congrats Message--*/
+/*--Start Page & Congrats Message--*/
+#start-element,
 #congrats-element {
   height: 535px;
   width: 100%;
 }
 
+.start-item,
 .congrats-item {
   color: limegreen;
   width: 100%;
@@ -113,7 +122,7 @@ header {
   font-size: 20px;
 }
 
-/*--Desktop--*/
+/*--DESKTOP--*/
 @media all and (min-width: 440px) {
   #quiz-container {
     color: limegreen;
