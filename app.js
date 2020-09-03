@@ -74,42 +74,35 @@ function generateQuizQuestionsString(questionObject) {
   <div id="js-quiz-element" class="section">
       <article id="home">
         <div class="group">
-          <div id="quiz-container" quiz-index="${STORE.questionNumber}">
+          <form id="quiz-container" quiz-index="${STORE.questionNumber}">
             <h2 class="question-number">Question: ${questionObject.questionNumber} of ${STORE.totalNumberofQuestions}</h2>
             <h3 id="score-board">Score: ${STORE.score}</h3>
             <p>${questionObject.question}</p>
             <fieldset id="radio-form">
-              <div class="answer-container">  
-                <legend class="js-answer-choice">Please Choose One</legend>
-                <br>
+            <legend class="js-answer-choice">Please Choose One</legend><br>
+              <div class="answer"> 
                 <label class="radio">
-                  <input id="answers" name="selection" value="${questionObject.answers[0]}" type="radio"> ${questionObject.answers[0]}
+                <input class="radio-input" name="selection" value="${questionObject.answers[0]}" type="radio"> ${questionObject.answers[0]}
                 </label>
-              </div>
-              <br>
-              <div class="answer-container">
-                <legend class="js-answer-choice"></legend>
+              </div><br>
+              <div class="answer">
                 <label class="radio">
-                  <input id="answers" name="selection" value="${questionObject.answers[1]}" type="radio"> ${questionObject.answers[1]}
+                <input class="radio-input" name="selection" value="${questionObject.answers[1]}" type="radio"> ${questionObject.answers[1]}
                 </label>
-              </div>
-              <br>
-              <div class="answer-container">
-                <legend class="js-answer-choice"></legend>
+              </div><br>
+              <div class="answer">
                 <label class="radio">
-                  <input id="answers" name="selection" value="${questionObject.answers[2]}" type="radio"> ${questionObject.answers[2]}
+                <input class="radio-input" name="selection" value="${questionObject.answers[2]}" type="radio"> ${questionObject.answers[2]}
                 </label>
-              </div>
-              <br>
-              <div class="answer-container">
-                <legend class="js-answer-choice"></legend>
+              </div><br>
+              <div class="answer">
                 <label class="radio">
-                  <input id="answers" name="selection" value="${questionObject.answers[3]}" type="radio"> ${questionObject.answers[3]}
+                <input class="radio-input" name="selection" value="${questionObject.answers[3]}" type="radio"> ${questionObject.answers[3]}
                 </label>
-              </div>
+              </div><br>
             </fieldset>
             <input id="submit-answer-button" type="submit" value="Submit"></input>
-          </div>
+          </form>
         </div>
       </article>
     </div>`
