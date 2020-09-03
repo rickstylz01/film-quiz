@@ -14,6 +14,7 @@ body {
 }
 
 main {
+  padding: 5rem;
   background-color: RGBA(0,0,0,0.5);
   border-style: dotted;
   border-color: limegreen;
@@ -56,23 +57,23 @@ h1 {
 }
 
 #play-again-button {
-  color: white;
+  color: black;
   font-size: 20px;
   width: 123px;
   height: 45px;
-  background-color: purple;
 }
 
 header {
   text-align: center;
 }
 
+/*--Radio buttons--*/
 #radio-form label,
 #score-board{
   color: orange;
 }
 
-/*--Alert Message--*/
+/*--Alert Message --*/
 .alert {
   padding: 18px;
   font-size: 24px;
@@ -121,7 +122,6 @@ header {
     padding: auto;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
     font-size: 24px;
     word-wrap: break-word;
     flex: 1;
