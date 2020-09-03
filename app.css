@@ -30,9 +30,86 @@ main {
   display: flex;
   align-items: center;
 }
+h1 {
+  color: white;
+}
+
+#quiz-container {
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+
+/*--Button Styles--*/
+#submit-answer-button,
+#play-again-button {
+  margin-top: 25px;
+  border-radius: 10%;
+  transition-duration: 0.3s;
+  background-color: white;
+}
+
+#play-again-button:hover,
+#submit-answer-button:hover {
+  background-color: #4CAF50; 
+  color: white;
+}
+
+#play-again-button {
+  color: white;
+  font-size: 20px;
+  width: 123px;
+  height: 45px;
+  background-color: purple;
+}
 
 header {
   text-align: center;
+}
+
+#radio-form label,
+#score-board{
+  color: orange;
+}
+
+/*--Alert Message--*/
+.alert {
+  padding: 18px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+}
+
+.alert-container {
+  height: 50px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/*--Congrats Message--*/
+#congrats-element {
+  height: 535px;
+}
+
+.congrats-item {
+  color: limegreen;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 50px;
+  word-wrap: break-word;
+  flex: 1;
+  margin: 10px;
+}
+
+/*--Scoreboard--*/
+#score-board {
+  font-size: 20px;
 }
 
 /*--Desktop--*/
@@ -64,75 +141,16 @@ header {
     flex-direction: row;
   }
 
-  #submit-answer-button,
-  #play-again-button {
-    margin-top: 25px;
-    border-radius: 10%;
-    transition-duration: 0.3s;
-    background-color: white;
-  }
-
-  #play-again-button:hover,
-  #submit-answer-button:hover {
-    background-color: #4CAF50; 
-    color: white;
-  }
-
-  #play-again-button {
-    color: white;
-    font-size: 20px;
-    width: 123px;
-    height: 45px;
-    background-color: purple;
-  }
-
-  /*--Alert Message--*/
-  .alert {
-    padding: 18px;
-    font-size: 24px;
-    color: white;
-    text-align: center;
-  }
-
-  .alert-container {
-    height: 50px;
-    margin-top: 40px;
-    text-align: center;
-  }
-
-  .hidden {
-    display: none;
-  }
-
   /*--Radio Form--*/
-
   #radio-form {
     border-style: hidden;
   }
 
-  #radio-form label,
-  #score-board{
-    color: orange;
-  }
-
+  /*--Scoreboard--*/
   #score-board {
     font-size: 24px;
   }
-
-  /*--Congrats Section--*/
-
-  .congrats-item {
-    color: limegreen;
-    height: 500px;
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    font-size: 50px;
-    word-wrap: break-word;
-    flex: 1;
-    margin: 10px;
-  }
+  
 }
 
 
