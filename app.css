@@ -72,6 +72,11 @@ header {
   color: orange;
 }
 
+.answer-container {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 /*--Alert Message--*/
 .alert {
   padding: 18px;
