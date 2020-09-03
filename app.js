@@ -117,7 +117,7 @@ function generateCongratsString() {
         <div class="group">
           <div class="item congrats-item">
             <p>You finished with a score of: ${STORE.score}</p>
-            <p>You get a: ${determineGradeAndMessage()}</p>
+            <p>Your grade is: ${determineGradeAndMessage()}</p>
             <p>${STORE.congratulationsMessage}</p>
             <input id="play-again-button" type="submit" value="Play Again"></input>
           </div>
