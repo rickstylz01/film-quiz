@@ -1,11 +1,3 @@
-/* Your styles should be mobile-first and responsive */
-
-/** 
-  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
-  *
-  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
-  *
-*/
 /*--Mobile First--*/
 body {
   background-color: RGBA(0,0,0,0.5);
@@ -14,7 +6,7 @@ body {
 }
 
 main {
-  padding: 5rem;
+  padding: 2rem;
   background-color: RGBA(0,0,0,0.5);
   border-style: dotted;
   border-color: limegreen;
@@ -31,9 +23,12 @@ main {
   display: flex;
   align-items: center;
 }
+
 h1 {
   color: white;
 }
+
+
 
 #quiz-container {
   margin-left: auto;
@@ -45,7 +40,8 @@ h1 {
   font-size: 18px;
 }
 
-.start-item {
+#start-item {
+  width: 100%;
   height: fit-content;
   font-size: 18px;
 }
@@ -94,7 +90,7 @@ header {
 }
 
 .alert-container {
-  height: 50px;
+  height: 45px;
   margin-top: 40px;
 }
 
@@ -111,12 +107,15 @@ header {
 
 .start-item,
 .congrats-item {
-  color: limegreen;
+  color: orange;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
+}
+
+.congrats-item {
   word-wrap: break-word;
   flex: 1;
   margin: 10px;
@@ -127,8 +126,22 @@ header {
   font-size: 20px;
 }
 
-/*--DESKTOP--*/
+
+
+
+
+
+/*--DESKTOP STYLING--*/
 @media all and (min-width: 440px) {
+  main {
+    padding: 5rem;
+  }
+
+  .start-item,
+  .congrats-item {
+    font-size: 50px;
+  }
+
   #quiz-container {
     color: limegreen;
     height: 500px;
@@ -139,7 +152,13 @@ header {
     font-size: 24px;
     word-wrap: break-word;
     flex: 1;
-    margin: 10px;
+  }
+
+  .alert {
+    padding: 18px;
+    font-size: 24px;
+    color: white;
+    text-align: center;
   }
 
   .question-number {
@@ -154,11 +173,6 @@ header {
 
   .group {
     flex-direction: row;
-  }
-
-  /*--Radio Form--*/
-  #radio-form {
-    border-style: hidden;
   }
 
   /*--Scoreboard--*/
